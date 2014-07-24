@@ -1,4 +1,4 @@
-import os,sys,random
+import os,sys,random,itertools
 import numpy as np
 
 
@@ -8,15 +8,18 @@ max_age=21
 
 def gen_ppl(num_ppl,num_samples,behav_ft):#generates num_ppl with sorted num_samples of ages between min_age and max_age; given the dimensions of the behavioral features (d), it generates the F matrix by sampling from the Std Normal Distribution
     for i in range(0,num_ppl):
-        with open('person%i' %i, 'w') as a:
-            with open('F%i' %i,'w') as f:
-                age=sorted(random.sample(range(min_age,max_age+1),num_samples))
-                print>>a,age
-                F_person=np.random.randn(behav_ft, behav_ft)
-                print>>f,F_person
-            
-def gen_b():
-        
+        os.mkdir(os.path.join(os.getcwd(),'person'+str(i)))
+    for i in range(0,num_ppl):
+        with open('person'+str(i)+'/age', 'w') as a:
+            with open('person'+str(i)+'/F','w') as f:
+                with open('person'+str(i)+'/b0','w') as b0:
+                    age=sorted(random.sample(range(min_age,max_age+1),num_samples))
+                    print>>a,age
+                    F_person=np.random.randn(behav_ft, behav_ft)
+                    print>>f,F_person
+                    b_init=np.random.randn(behav_ft,1)
+                    print>>b0,b_init
+
 
 def usage():
     print "num_ppl num_samples behav_ft"
