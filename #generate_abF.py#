@@ -18,14 +18,14 @@ def gen_ppl(num_ppl,num_samples,behav_ft):
                     F_person=np.random.randn(behav_ft, behav_ft)
                     np.savetxt(f,F_person,delimiter=',')
                     b_init=np.random.randn(behav_ft,1)
-                np.savetxt(b0,b_init,delimiter=',')
+                    np.savetxt(b0,b_init,delimiter=',')
 
 
 def usage():
     print "num_ppl num_samples behav_ft"
     sys.exit(2)
 
-
+    
     
 
 def main():

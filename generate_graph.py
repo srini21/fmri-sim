@@ -11,6 +11,7 @@ def generate_graph(num_nodes, topology, substar_count):
     nodes=range(0,num_nodes)
     G=nx.Graph()
     G.add_nodes_from(nodes)
+    
     if(topology=='star'):
         for node in range(0,num_nodes-1):
             G.add_edge(node,num_nodes-1)        
@@ -24,6 +25,7 @@ def generate_graph(num_nodes, topology, substar_count):
         for node in range(0,num_nodes):
             if(node!=int(math.ceil(node/substar_count)*substar_count)+(substar_count-1)):
                 G.add_edge(node, int(math.ceil(node/substar_count)*substar_count)+(substar_count-1))
+    print len(G.nodes())
     np.savetxt(open('nodes','w'),G.nodes(),delimiter=',')
     np.savetxt(open('edges','w'),G.edges(),delimiter=',')
     np.savetxt(open('adj_mat','w'),nx.to_numpy_matrix(G),delimiter=',')
