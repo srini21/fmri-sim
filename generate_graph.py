@@ -1,5 +1,6 @@
 import networkx as nx,os,sys,math
 import matplotlib.pyplot as plt
+import numpy as np
 
 
 def usage():
@@ -19,19 +20,15 @@ def generate_graph(num_nodes, topology, substar_count):
             sys.exit(2)
         subhead=range(substar_count-1,num_nodes,substar_count)
         for a,b in zip(subhead,subhead[1:]):
-            print (a,b)
             G.add_edge(a,b)
         for node in range(0,num_nodes):
             if(node!=int(math.ceil(node/substar_count)*substar_count)+(substar_count-1)):
                 G.add_edge(node, int(math.ceil(node/substar_count)*substar_count)+(substar_count-1))
-    
-    print "num_nodes:"
-    print G.nodes()
-    print G.edges()
-    adj_matrix=nx.to_numpy_matrix(G)
-    print adj_matrix
+    np.savetxt(open('nodes','w'),G.nodes(),delimiter=',')
+    np.savetxt(open('edges','w'),G.edges(),delimiter=',')
+    np.savetxt(open('adj_mat','w'),nx.to_numpy_matrix(G),delimiter=',')
     nx.draw(G)
-    plt.show()
+    plt.savefig('graphRep.png')
 
 def main():
     if len(sys.argv)<2:
