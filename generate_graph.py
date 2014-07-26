@@ -25,6 +25,9 @@ def generate_graph(num_nodes, topology, substar_count):
         for node in range(0,num_nodes):
             if(node!=int(math.ceil(node/substar_count)*substar_count)+(substar_count-1)):
                 G.add_edge(node, int(math.ceil(node/substar_count)*substar_count)+(substar_count-1))
+    #Adding self weight
+    for a in range(0,num_nodes):
+        G.add_edge(a,a)
     print len(G.nodes())
     np.savetxt(open('nodes','w'),G.nodes(),delimiter=',')
     np.savetxt(open('edges','w'),G.edges(),delimiter=',')
