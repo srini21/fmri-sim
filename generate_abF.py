@@ -14,11 +14,11 @@ def gen_ppl(num_ppl,num_samples,behav_ft):
             with open('person'+str(i)+'/F','w') as f:
                 with open('person'+str(i)+'/b0','w') as b0:
                     age=sorted(random.sample(range(min_age,max_age+1),num_samples))
-                    np.savetxt(a,age,delimiter=',')
+                    np.save(a,age)
                     F_person=np.random.randn(behav_ft, behav_ft)
-                    np.savetxt(f,F_person,delimiter=',')
+                    np.save(f,F_person)
                     b_init=np.random.randn(behav_ft,1)
-                    np.savetxt(b0,b_init,delimiter=',')
+                    np.save(b0,b_init)
 
 
 def usage():

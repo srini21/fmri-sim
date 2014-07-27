@@ -5,7 +5,7 @@ import os,sys,numpy as np
 #get the number of ages for the given person
 def num_age(curr_dir):
     with open(curr_dir+'/age') as a:
-        age_list=np.loadtxt(a,delimiter=',')
+        age_list=np.load(a)
         return age_list
 
 #generates bs as time-series from the b0 and the ages for the given person. Noise added as given using the input argument
@@ -16,13 +16,13 @@ def gen_bs(num_ppl,behav_ft,noise_strength):
         dir='person'+str(i)
         with open(dir+'/b0') as b0:
             with open(dir+'/F') as F_mat:
-                F=np.loadtxt(F_mat,delimiter=',')
-                b_prev=np.loadtxt(b0,delimiter=',')
+                F=np.load(F_mat)
+                b_prev=np.load(b0)
                 num=num_age(dir)
                 for j in range(1,behav_ft):
                     b_curr=np.dot(F,b_prev)+np.random.normal(0,noise_strength,behav_ft)
                     if j in num:
-                        np.savetxt(dir+'/b'+str(j),b_curr,delimiter=',')
+                        np.save(dir+'/b'+str(j),b_curr)
                     b_prev=b_curr
 
 

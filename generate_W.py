@@ -7,7 +7,7 @@ def usage():
 
 
 def generate_w(num_nodes, behav_ft):
-    G=np.loadtxt('adj_mat',delimiter=',')
+    G=np.load('adj_mat')
     print G.shape
     Wf=G
     Wf[Wf.nonzero()]=np.random.randn(len(Wf[Wf.nonzero()]))
