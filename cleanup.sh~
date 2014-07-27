@@ -1,0 +1,6 @@
+rm -r person*
+rm graphRep.png
+rm W*
+rm nodes
+rm edges
+rm adj_mat

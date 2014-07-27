@@ -20,9 +20,12 @@ def gen_bs(num_ppl,behav_ft,noise_strength):
                 b_prev=np.load(b0)
                 num=num_age(dir)
                 for j in range(1,behav_ft):
-                    b_curr=np.dot(F,b_prev)+np.random.normal(0,noise_strength,behav_ft)
+                    b_curr=np.dot(F,b_prev)+np.random.normal(0,noise_strength)
                     if j in num:
-                        np.save(dir+'/b'+str(j),b_curr)
+                        temp=b_curr
+                        temp=np.append(temp,j)
+                        temp=np.append(temp,1)
+                        np.save(dir+'/b'+str(j),temp)
                     b_prev=b_curr
 
 
