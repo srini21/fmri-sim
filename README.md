@@ -3,8 +3,41 @@ fmri-sim
 
 Generating a model with simulated fmri and dti data coupled with behavioral features and age , to be used for predicting disease symptoms in the brain.
 
+
+Writeup
+=======
+Refer to fmri.pdf in writeup/fmri.pdf
+
+
 Code
 =========
+
+******************************************************************
+WARNING! Remember to cleanup before generating data to avoid mess.
+******************************************************************
+CLEANUP (only if you have generated the data before)
+=======
+
+Cleans up all the generated data. 
+
+USAGE sh cleanup.sh
+------------------------------------------------------------------
+
+
+main_script.py 
+--------------
+USAGE: python main_script.py num_ppl num_samples noise_strength num_nodes topology sub_nodes behav_ft
+
+num_ppl	      :		      No. of persons for whom the data has to be simulated.
+num_samples   :		      No. of samples of age for every person between the range 7 and 21.
+behav_ft      :		      No. of behavioral features for every person. 
+noise_strength:		      Amount of normal noise required to add to the behavioral data time series (use 1)
+num_nodes     :		      No. of nodes in the brain under question.
+topology      :		      star/ substar (use substar)
+sub_node      :		      Size of sub cluster
+
+
+
 generate_abF.py 
 ---------------
 
@@ -13,9 +46,6 @@ Generates the age, b0, F for the number of individuals as reqd.
  
 USAGE:	python generate_abF.py num_ppl num_samples behav_ft 
 
-num_ppl	      :		      No. of persons for whom the data has to be simulated.
-num_samples   :		      No. of samples of age for every person between the range 7 and 21.
-behav_ft      :		      No. of behavioral features for every person. 
 
 Current usage: num_ppl =10, num_samples=4, behav_ft=30 
 
@@ -26,4 +56,21 @@ Generates a time series of b based on age and F for every person for the age tha
 
 USAGE:	python generate_b.py num_ppl behav_ft noise_strength
 
-noise_strength :	     The amount of noise that has to be added for every iteration in the time series.
+
+generate_graph.py
+-----------------
+
+Generates an adjacency matrix 'adj_mat', nodes and edges in the local directory. 
+
+USAGE: python generate_graph.py num_nodes topology substar_count ( if single star, 300 star 0 else 300 substar 5)
+
+generate_W.py
+-------------
+
+Generates Wd and Wf in the local directory.
+
+USAGE: python generate_W num_nodes behav_ft
+
+
+
+
