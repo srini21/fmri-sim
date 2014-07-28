@@ -16,6 +16,7 @@ def gen_ppl(num_ppl,num_samples,behav_ft):
                     age=sorted(random.sample(range(min_age,max_age+1),num_samples))
                     np.save(a,age)
                     F_person=np.random.randn(behav_ft, behav_ft)
+                    F_person=F_person/len(F_person) #Normalization
                     np.save(f,F_person)
                     b_init=np.random.randn(behav_ft,1)
                     np.save(b0,b_init)

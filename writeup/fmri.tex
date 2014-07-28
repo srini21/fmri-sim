@@ -55,20 +55,20 @@ $\mathcal{W}^{d}$ and $\mathcal{W}^{f} \in \Re^{n*n*(d+2)}$  represent the weigh
 \subsection{$\theta_{s,t}$ for fMRI and DTI}
 The formula for generating $\theta^{f}$ and $\theta^{d}$ are shown below :
 \begin{align*}
-\forall _{s,t} \hspace{10pt} \theta^{f}_{s,t}(b,a)= (\mathcal{W}^f_{s,t})^T * \mathcal{X} \\
-\forall _{s,t} \hspace{10pt} \theta^{d}_{s,t}(b,a)= (\mathcal{W}^d_{s,t})^T * \mathcal{X} \\
+\forall _{s,t} \hspace{10pt} \theta^{f}_{s,t}(b,a)= (\mathcal{W}^f_{s,t}) * \mathcal{X} \\
+\forall _{s,t} \hspace{10pt} \theta^{d}_{s,t}(b,a)= (\mathcal{W}^d_{s,t}) * \mathcal{X} \\
 \end{align*}
 where $\mathcal{X} =
 \begin{bmatrix}
       b_{i} \\
       i \\
       1
-    \end{bmatrix} \in \Re^{d+2}$ and $\theta \in \Re^{n*n*d+2}$
+    \end{bmatrix} \in \Re^{d+2}$ and $\theta \in \Re^{n*n}$
 \subsection{Sampling $\mathcal{Y}$}
 We finally sample $\mathcal{Y}$ where $\mathcal{Y}^{f}$,$\mathcal{Y}^{d}$ $\in \Re^{d}$ as follows :
 \begin{align*}
 \mathcal{Y}^{f} \sim \mathcal{P}(\mathcal{Y};\theta^{f})\\
-\mathcal{Y}^{f} \sim \mathcal{P}(\mathcal{Y};\theta^{f})
+\mathcal{Y}^{d} \sim \mathcal{P}(\mathcal{Y};\theta^{d})
 \end{align*}
 \section{Further Steps}
 Next steps involve discussing the fitting procedure and other alternatives during our meeting on 7/30. 
