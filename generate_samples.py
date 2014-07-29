@@ -1,11 +1,11 @@
 import numpy as np,os,sys
 
 def generate_samples(num_ppl,num_nodes,num_scans):
-    print "---------------------"
-    print "generating samples"
-    print "---------------------"
-    if not os.path.exists('Samples'):
-        os.makedirs('Samples')
+    print "-----------------------"
+    print "generating fMRI samples"
+    print "-----------------------"
+    if not os.path.exists('Samples_fMRI'):
+        os.makedirs('Samples_fMRI')
     ppl=range(0,num_ppl)
     Wf=np.load('Wf')
     count=0
@@ -17,7 +17,7 @@ def generate_samples(num_ppl,num_nodes,num_scans):
             theta=np.dot(Wf,X)
             Y=np.random.multivariate_normal([0]*num_nodes,theta,num_scans)
             filename='y_'+str(i)+'_'+str(age)
-            np.save('Samples/'+filename,Y.T)
+            np.save('Samples_fMRI/'+filename,Y.T)
             count=count+1
     count=count*num_scans
     print str(count)+" Samples of fMRI created"

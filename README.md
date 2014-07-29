@@ -3,6 +3,11 @@ fmri-sim
 
 Generating a model with simulated fmri and dti data coupled with behavioral features and age , to be used for predicting disease symptoms in the brain.
 
+The Samples are generated in a new directory called 'Samples_fMRI'
+
+TODO :
+Generate DTI Samples
+
 
 Writeup
 =======
@@ -26,7 +31,7 @@ USAGE sh cleanup.sh
 
 main_script.py 
 --------------
-USAGE: python main_script.py num_ppl num_samples noise_strength num_nodes topology sub_nodes behav_ft
+USAGE: python main_script.py num_ppl num_samples noise_strength num_nodes topology sub_nodes behav_ft num_scans
 
 num_ppl	      :		      No. of persons for whom the data has to be simulated.
 num_samples   :		      No. of samples of age for every person between the range 7 and 21.
@@ -35,7 +40,7 @@ noise_strength:		      Amount of normal noise required to add to the behavioral 
 num_nodes     :		      No. of nodes in the brain under question.
 topology      :		      star/ substar (use substar)
 sub_node      :		      Size of sub cluster
-
+num_scans     :		      No. of scans for every age.
 
 
 generate_abF.py 
@@ -69,8 +74,14 @@ generate_W.py
 
 Generates Wd and Wf in the local directory.
 
-USAGE: python generate_W num_nodes behav_ft
+USAGE: python generate_W.py num_nodes behav_ft
 
+generate_samples.py
+-------------------
 
+generates fMRI samples
+TODO : DTI
+
+USAGE: python generate_samples.py num_ppl num_nodes num_scans
 
 
