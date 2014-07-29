@@ -8,6 +8,9 @@ def usage():
     sys.exit(2)
 
 def generate_graph(num_nodes, topology, substar_count):
+    print "---------------------"
+    print "generating the graph"
+    print "---------------------"
     nodes=range(0,num_nodes)
     G=nx.Graph()
     G.add_nodes_from(nodes)
@@ -28,12 +31,12 @@ def generate_graph(num_nodes, topology, substar_count):
     #Adding self weight
     for a in range(0,num_nodes):
         G.add_edge(a,a)
-    print len(G.nodes())
     np.save(open('nodes','w'),G.nodes())
     np.save(open('edges','w'),G.edges())
     np.save(open('adj_mat','w'),nx.to_numpy_matrix(G))
     nx.draw(G)
     plt.savefig('graphRep.png')
+    print "Done"
 
 def main():
     if len(sys.argv)<2:

@@ -12,6 +12,9 @@ def num_age(curr_dir):
 
 
 def gen_bs(num_ppl,behav_ft,noise_strength):
+    print "------------------------"
+    print "generating b Time series"
+    print "------------------------"
     for i in range(0,num_ppl):
         dir='person'+str(i)
         with open(dir+'/b0') as b0:
@@ -27,6 +30,7 @@ def gen_bs(num_ppl,behav_ft,noise_strength):
                         temp=np.append(temp,1)
                         np.save(dir+'/b'+str(j),temp)
                     b_prev=b_curr
+    print "Done"
 
 
 def usage():

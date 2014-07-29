@@ -7,6 +7,9 @@ def usage():
 
 
 def generate_w(num_nodes, behav_ft):
+    print "---------------------"
+    print "generating Wf and Wd"
+    print "---------------------"
     G=np.load('adj_mat')
     print G.shape
     Wf=G
@@ -23,7 +26,10 @@ def generate_w(num_nodes, behav_ft):
         temp[temp.nonzero()]=np.random.randn(len(temp[temp.nonzero()]))
         Wd=np.dstack((Wd,temp))
     np.save(open('Wd','w'),Wd)
+    print "Shape of weights"
     print Wd.shape
+    print "Done"
+        
     
 
         
