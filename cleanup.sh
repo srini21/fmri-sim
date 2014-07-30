@@ -1,7 +1,7 @@
 echo "Cleaning up everything generated"
 rm -r person*
 echo "person* dirs deleted"
-rm -r Samples
+rm -r Samples*
 echo "Samples dirs deleted"
 rm graphRep.png
 echo "Graph Representation deleted"
