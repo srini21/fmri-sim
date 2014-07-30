@@ -1,4 +1,4 @@
-num_nodes=300
+#author : Srinivasan Sivaramachandrannum_nodes=300
 num_scans=5
 Wd=np.load('Wd')
 Wd=np.absolute(Wd/1000)

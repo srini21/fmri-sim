@@ -1,3 +1,4 @@
+#author : Srinivasan Sivaramachandran
 import numpy as np,os,sys
 
 def generate_samples(num_ppl,num_nodes,num_scans):

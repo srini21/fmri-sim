@@ -1,3 +1,4 @@
+#author : Srinivasan Sivaramachandran
 import os,sys
 import generate_graph
 import generate_W

@@ -1,6 +1,5 @@
+#author : Srinivasan Sivaramachandran
 import os,sys,numpy as np
-#TODO instead of getting the num_ppl try to find out from the directory
-
 
 #get the number of ages for the given person
 def num_age(curr_dir):

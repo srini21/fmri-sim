@@ -1,3 +1,4 @@
+#author : Srinivasan Sivaramachandran
 import numpy as np,os,sys,time
 
 def generate_samplesfmri(num_ppl,num_nodes,num_scans):
@@ -29,7 +30,7 @@ def generate_samplesdti(num_ppl,num_nodes, num_scans):
     if not os.path.exists('Samples_dti'):
         os.makedirs('Samples_dti')   
     Wd=np.load('Wd')
-    Wd=np.absolute(Wd/1000)
+    Wd=np.absolute(Wd/100000)
     count=0
     ppl=range(0,num_ppl)
     for pers in ppl:
