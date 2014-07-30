@@ -70,8 +70,19 @@ We finally sample $\mathcal{Y}$ where $\mathcal{Y}^{f}$,$\mathcal{Y}^{d}$ $\in \
 \mathcal{Y}^{f} \sim \mathcal{P}(\mathcal{Y};\theta^{f})\\
 \mathcal{Y}^{d} \sim \mathcal{P}(\mathcal{Y};\theta^{d})
 \end{align*}
-\section{Further Steps}
+
+  \section{Further Steps}
 Next steps involve discussing the fitting procedure and other alternatives during our meeting on 7/30. 
+
+\subsection{Prediction}
+The main goal as discussed in the meeting on 7/22 is to predict mental health symptoms using imaging and behavioral data. Russ suggested that it would be ideal the predictive model are directly interpretable in terms of changes in the brain networks. Pradeep suggested a muti-view predictive model.
+
+Two potential approaches as suggested by Sanmi were :
+
+\textbf{Approach 1:} Direct predictive model using all the information sources. This has the advantage of being relatively straightforward. Interpretability will likely be achieved using sparsity constraints on the predictive weights.
+
+\textbf{Approach 2: } A two-step model. The first step extracts the (fMRI, DTI) graphs from the brain data, and the second step is a predictive model from the network to the phenotypes of interest. It turns out that the brain image data is missing for the majority of the subjects. An advantage of this approach is that it can address this missing data issue. 
+
 \begin{thebibliography}{99}
     \bibitem{smith} Stephen M. Smith, Karla L. Miller, Gholamreza Salimi-Khorshidi, Matthew Webster, Christian F. Beckmann, Thomas E. Nichols, Joseph D. Ramsey, Mark W. Woolrich, Network modelling methods for FMRI, NeuroImage, Volume 54, Issue 2, 15 January 2011, Pages 875-891, ISSN 1053-8119, \url{http://dx.doi.org/10.1016/j.neuroimage.2010.08.063}
 
