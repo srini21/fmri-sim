@@ -79,8 +79,8 @@ USAGE: python generate_W.py num_nodes behav_ft
 generate_samples.py
 -------------------
 
-generates fMRI samples
-TODO : DTI
+generates fMRI and DTI samples
+
 
 USAGE: python generate_samples.py num_ppl num_nodes num_scans
 
