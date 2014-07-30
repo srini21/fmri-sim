@@ -1,6 +1,8 @@
 import networkx as nx,os,sys,math
 import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib
+matplotlib.use('Agg')
 
 
 def usage():
