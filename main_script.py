@@ -25,7 +25,8 @@ def main():
     generate_abF.gen_ppl(num_ppl, num_samples, behav_ft)
     generate_b.gen_bs(num_ppl, behav_ft, noise_strength)
     generate_W.generate_w(num_nodes, behav_ft)
-    generate_samples.generate_samples(num_ppl, num_nodes, num_scans)
+    generate_samples.generate_samplesfmri(num_ppl, num_nodes, num_scans)
+    generate_samples.generate_samplesdti(num_ppl, num_nodes, num_scans)
     
 if __name__ == '__main__':
     main()
