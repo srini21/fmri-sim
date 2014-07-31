@@ -11,6 +11,7 @@ def num_age(curr_dir):
 
 
 def gen_bs(num_ppl,behav_ft,noise_strength):
+#Using only absolute values to generate the bs. So the Xs are always positive.
     print "------------------------"
     print "generating b Time series"
     print "------------------------"
@@ -18,8 +19,8 @@ def gen_bs(num_ppl,behav_ft,noise_strength):
         dir='person'+str(i)
         with open(dir+'/b0') as b0:
             with open(dir+'/F') as F_mat:
-                F=np.load(F_mat)
-                b_prev=np.load(b0)
+                F=np.absolute(np.load(F_mat))
+                b_prev=np.absolute(np.load(b0))
                 num=num_age(dir)
                 for j in range(1,behav_ft):
                     b_curr=np.dot(F,b_prev)+np.random.normal(0,noise_strength)
