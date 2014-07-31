@@ -49,7 +49,6 @@ def generate_samplesdti(num_ppl,num_nodes, num_scans):
                 for ctr in range(0,sampleSkip):
                     for i in range(0,num_nodes):
                         theta_true=np.dot(Wd[i,:,:],X)
-                        theta_true[i]==0
                         eta=sampint + np.dot(theta_true.T,tempx) 
                         assert eta>=0
                         eta= eta/100
