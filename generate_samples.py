@@ -7,6 +7,8 @@ def generate_samplesfmri(num_ppl,num_nodes,num_scans):
     print "-----------------------"
     if not os.path.exists('Samples_fMRI'):
         os.makedirs('Samples_fMRI')
+    if not os.path.exists('Theta_fMRI'):
+        os.makedirs('Theta_fMRI')  
     ppl=range(0,num_ppl)
     Wf=np.load('Wf')
     count=0
@@ -16,6 +18,7 @@ def generate_samplesfmri(num_ppl,num_nodes,num_scans):
         for age in ages:
             X=np.load(dir+'/b'+str(age)+'.npy')
             theta=np.dot(Wf,X)
+            np.save('Theta_fMRI/th_'+filename,theta)
             Y=np.random.multivariate_normal([0]*num_nodes,theta,num_scans)
             filename='yf_'+str(i)+'_'+str(age)
             np.save('Samples_fMRI/'+filename,Y.T)
@@ -29,6 +32,8 @@ def generate_samplesdti(num_ppl,num_nodes, num_scans):
     print "-----------------------"
     if not os.path.exists('Samples_dti'):
         os.makedirs('Samples_dti')   
+    if not os.path.exists('Theta_dti'):
+        os.makedirs('Theta_dti')  
     Wd=np.load('Wd')
     Wd=np.absolute(Wd/100000)
     count=0
@@ -40,6 +45,7 @@ def generate_samplesdti(num_ppl,num_nodes, num_scans):
             samples=np.zeros((num_scans,num_nodes))
             X=np.load(dir+'/b'+str(age)+'.npy')
             filename='yd_'+str(pers)+'_'+str(age)
+            np.save('Theta_dti/th_'+filename,np.dot(Wd,X))
             burnin=0
             sampint=500
             tempx=np.zeros((num_nodes,1))
