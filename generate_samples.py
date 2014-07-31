@@ -18,9 +18,9 @@ def generate_samplesfmri(num_ppl,num_nodes,num_scans):
         for age in ages:
             X=np.load(dir+'/b'+str(age)+'.npy')
             theta=np.dot(Wf,X)
+            filename='yf_'+str(i)+'_'+str(age)
             np.save('Theta_fMRI/th_'+filename,theta)
             Y=np.random.multivariate_normal([0]*num_nodes,theta,num_scans)
-            filename='yf_'+str(i)+'_'+str(age)
             np.save('Samples_fMRI/'+filename,Y.T)
             count=count+1
     count=count*num_scans

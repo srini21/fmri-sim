@@ -15,3 +15,5 @@ rm edges
 echo "edges deleted"
 rm adj_mat
 echo "graph deleted"
+rm -r Theta*
+echo "Theta deleted"
