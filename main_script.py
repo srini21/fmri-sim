@@ -8,7 +8,7 @@ import generate_samples
 import generate_Z
 
 def usage():
-    print "num_ppl num_samples noise_strength num_nodes topology sub_nodes behav_ft num_scans"
+    print "num_ppl num_samples noise_strength num_nodes topology sub_nodes behav_ft num_scans phenotypes"
     sys.exit(2)
 
 def main():
@@ -23,13 +23,14 @@ def main():
     sub_nodes=int(sys.argv[6])
     behav_ft=int(sys.argv[7])
     num_scans=int(sys.argv[8])
+    phenotypes=int(sys.argv[9])
     generate_graph.generate_graph(num_nodes, topology, sub_nodes)
     generate_abF.gen_ppl(num_ppl, num_samples, behav_ft)
     generate_b.gen_bs(num_ppl, behav_ft, noise_strength)
     generate_W.generate_w(num_nodes, behav_ft)
     generate_samples.generate_samplesfmri(num_ppl, num_nodes, num_scans)
     generate_samples.generate_samplesdti(num_ppl, num_nodes, num_scans)
-    generate_Z.main()
+    generate_Z.getThetaAlpha(phenotypes)
     
 if __name__ == '__main__':
     main()

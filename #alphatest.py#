@@ -1,0 +1,6 @@
+alpha=t
+alpha[alpha.nonzero()]=np.random.randn(len(alpha[alpha.nonzero()]))
+for i in range(0,11):
+    temp=t
+    temp[temp.nonzero()]=np.random.rand(len(temp[temp.nonzero()]))
+    alpha=np.dstack((alpha,temp))
