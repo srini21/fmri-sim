@@ -17,3 +17,5 @@ rm adj_mat
 echo "graph deleted"
 rm -r Theta*
 echo "Theta deleted"
+rm -r Z*
+echo "Z files deleted"
