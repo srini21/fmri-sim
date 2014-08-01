@@ -84,4 +84,9 @@ generates fMRI and DTI samples
 
 USAGE: python generate_samples.py num_ppl num_nodes num_scans
 
+generate_Z.py
+-------------
 
+generates Z= Thetaf*alpha where alpha is the predictive weight for all theta(a,b)
+
+USAGE: python generate_Z

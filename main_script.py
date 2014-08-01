@@ -5,6 +5,7 @@ import generate_W
 import generate_abF
 import generate_b
 import generate_samples
+import generate_Z
 
 def usage():
     print "num_ppl num_samples noise_strength num_nodes topology sub_nodes behav_ft num_scans"
@@ -28,6 +29,7 @@ def main():
     generate_W.generate_w(num_nodes, behav_ft)
     generate_samples.generate_samplesfmri(num_ppl, num_nodes, num_scans)
     generate_samples.generate_samplesdti(num_ppl, num_nodes, num_scans)
+    generate_Z.main()
     
 if __name__ == '__main__':
     main()
