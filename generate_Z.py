@@ -12,11 +12,12 @@ def generate_Z(thetaname,theta,alpha):
     z=np.dot(alpha.T,theta)
     for i in range(0,z.size):
         z[i]=sin(z[i])
-    np.save('Z_fMRI/z'+thetaname,z)
+    return z
     
 def getThetaAlpha(phenotypes):
     #get the number of files
     thetanames=np.load('Theta_fMRI/ThetaFiles.npy')
+    z=[]
     for thetaname in thetanames:
         theta=np.load('Theta_fMRI/'+thetaname+'.npy')
         (x,y)=theta.shape
@@ -28,7 +29,8 @@ def getThetaAlpha(phenotypes):
             temp[temp.nonzero()]=np.random.rand(len(temp[temp.nonzero()]))
             alpha=np.dstack((alpha,temp))
         alpha=np.resize(alpha,(theta.size,phenotypes))
-        generate_Z(thetaname,theta,alpha)
+        z.extend(generate_Z(thetaname,theta,alpha))
+    np.save('Z',z)
 def main():
     phenotypes=int(sys.argv[1])
     getThetaAlpha(phenotypes)
