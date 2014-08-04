@@ -1,8 +1,10 @@
 import numpy as np,os,sys
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 def sin(num):
-    y=np.tanh(num)
+    y=1/(1+np.exp(-num))
     return y
 
 def generate_Z(thetaname,theta,alpha):
@@ -12,6 +14,8 @@ def generate_Z(thetaname,theta,alpha):
     z=np.dot(alpha.T,theta)
     for i in range(0,z.size):
         z[i]=sin(z[i])
+    for i in range(0,z.size):
+        z[i]=(z[i]-np.mean(z))/np.std(z)
     return z
     
 def getThetaAlpha(phenotypes):
@@ -31,6 +35,8 @@ def getThetaAlpha(phenotypes):
         alpha=np.resize(alpha,(theta.size,phenotypes))
         z.extend(generate_Z(thetaname,theta,alpha))
     np.save('Z',z)
+    plt.hist(z,normed=True)
+    plt.savefig('2sig.png')
 def main():
     phenotypes=int(sys.argv[1])
     getThetaAlpha(phenotypes)
