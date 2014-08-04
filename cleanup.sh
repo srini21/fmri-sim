@@ -19,3 +19,5 @@ rm -r Theta*
 echo "Theta deleted"
 rm -r Z*
 echo "Z files deleted"
+rm *.png
+echo "png files deleted"
