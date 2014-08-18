@@ -67,7 +67,7 @@ def generate_samplesdti(num_ppl,num_nodes, num_scans):
                         eta= eta/100
                         tempx[i]=np.random.poisson(np.exp(eta))
                 samples[s,:]=tempx.T
-            np.save('Samples_dti/'+filename,samples)
+            np.save('Samples_dti/'+filename,samples.T)
             count=count+1
             print str(count)+" age completed"
             print "time"

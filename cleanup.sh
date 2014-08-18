@@ -21,3 +21,5 @@ rm -r Z*
 echo "Z files deleted"
 rm *.png
 echo "png files deleted"
+rm *.npy
+echo "generated data deleted"
