@@ -6,6 +6,7 @@ import generate_abF
 import generate_b
 import generate_samples
 import generate_Z
+import concatenate_samples
 
 def usage():
     print "num_ppl num_samples noise_strength num_nodes topology sub_nodes behav_ft num_scans phenotypes"
@@ -31,6 +32,9 @@ def main():
     generate_samples.generate_samplesfmri(num_ppl, num_nodes, num_scans)
     generate_samples.generate_samplesdti(num_ppl, num_nodes, num_scans)
     generate_Z.getThetaAlpha(phenotypes)
+    concatenate_samples.concat('fMRI')
+    concatenate_samples.concat('dti')
+    concatenate_samples.concat_b(num_ppl,num_scans)
     
 if __name__ == '__main__':
     main()
