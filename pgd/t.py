@@ -1,0 +1,19 @@
+import numpy as np
+Y=np.load('concat_fMRI.npy')
+x=np.load('concat_bs.npy')
+curr=0
+ys=Y[:,curr]
+ysc=np.hstack((Y[:,:curr],Y[:,curr+1:]))
+thr=5e-4
+maxit=1e3
+beta=0.5
+(n,p)=ysc.shape
+(n_temp,q)=x.shape
+(n_temp2)=ys.shape
+yyx=np.dot((np.kron(ys,np.ones((p,1))).T*ysc).T,x)
+ysx=np.dot(ys,x)
+Bhat=np.random.rand(p,q)/q
+Ahat=np.random.rand(1,q)/q
+iter=1
+Agrad=np.load('Agrad.npy')
+Bgrad=np.load('Bgrad.npy')
