@@ -38,8 +38,8 @@ def generate_samplesdti(num_ppl,num_nodes, num_scans):
         os.makedirs('Samples_dti')   
     if not os.path.exists('Theta_dti'):
         os.makedirs('Theta_dti')  
-    Wd=np.load('Wd')
-    Wd=np.absolute(Wd/100000)
+    Wd=np.load('Wd') 
+    Wd=np.absolute(Wd/1000000)
     count=0
     ppl=range(0,num_ppl)
     ThetaFiles=[]
@@ -54,7 +54,7 @@ def generate_samplesdti(num_ppl,num_nodes, num_scans):
             ThetaFiles.append(thetaname)
             np.save('Theta_dti/th_'+filename,np.dot(Wd,X))
             burnin=0
-            sampint=500
+            sampint=200
             tempx=np.zeros((num_nodes,1))
             t=time.time()
             for s in range(0,num_scans):
