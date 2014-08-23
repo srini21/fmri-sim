@@ -77,24 +77,43 @@ def pgd(type,ys,ysc,x,lam,lam2,curr):
         ind=np.linalg.norm(np.vstack((Ahat,Bhat))-np.vstack((Aold,Bold)),'fro')/np.linalg.norm(np.vstack((Aold,Bold)),'fro')
     return np.vstack((Ahat,Bhat))
     
-    
-def main():
-    Y=np.load('concat_dti.npy')
-    x=np.load('concat_bs.npy')
+def poisson(Y,x):
     lam=1000.0
     lam2=2000.0
     (n,p)=Y.shape
     curr=range(1,p)
     ys=Y[:,0]
     ysc=np.hstack((Y[:,:0],Y[:,0+1:]))
-    W_comput= pgd('gaussian',ys,ysc,x,lam,lam2,0)
+    W_comput= pgd('gaussian',ys,ysc,x,lam,lam2,0).T
+    for row in curr:
+        ys=Y[:,row]
+        ysc=np.hstack((Y[:,:row],Y[:,row+1:]))      
+        W_comput=np.dstack((pgd('gaussian',ys,ysc,x,lam,lam2,row).T,W_comput))
+        print str(row)+' done'
+    print W_comput.T.shape
+    np.save('Wd_comput',W_comput.T)
+def gaussian(Y,x):
+    lam=1.0
+    lam2=0.0
+    (n,p)=Y.shape
+    curr=range(1,p)
+    ys=Y[:,0]
+    ysc=np.hstack((Y[:,:0],Y[:,0+1:]))
+    W_comput= pgd('gaussian',ys,ysc,x,lam,lam2,0).T
     for row in curr:
        ys=Y[:,row]
        ysc=np.hstack((Y[:,:row],Y[:,row+1:]))      
-       W_comput=np.dstack((W_comput,pgd('gaussian',ys,ysc,x,lam,lam2,row)))
+       W_comput=np.dstack((pgd('gaussian',ys,ysc,x,lam,lam2,row).T,W_comput))
        print str(row)+' done'
-    print W_comput.shape
-    np.save('W_comput',W_comput)    
+    print W_comput.T.shape
+    np.save('Wf_comput',W_comput.T)
+    
+def main():
+    Yd=np.load('concat_dti.npy')
+    Yf=np.load('concat_fMRI.npy')
+    x=np.load('concat_bs.npy')
+    gaussian(Yf,x)
+    poisson(Yd,x)
     
 if __name__ == '__main__':
     main()
