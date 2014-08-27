@@ -5,8 +5,8 @@ def sigmoid(num):
     return y
 
 def generate_Z(thetaname,theta,alpha):
-    if not os.path.exists('Z_fMRI'):
-        os.makedirs('Z_fMRI')
+    if not os.path.exists('Z_est_fMRI'):
+        os.makedirs('Z_est_fMRI')
     theta=np.resize(theta,theta.size)
     z=np.dot(alpha.T,theta)
     for i in range(0,z.size):
@@ -17,12 +17,12 @@ def generate_Z(thetaname,theta,alpha):
     
 def getThetaAlpha(phenotypes,num_scans):
     #get the number of files
-    thetanames=np.load('Theta_fMRI/ThetaFiles.npy')
+    thetanames=np.load('Theta_est_fMRI/ThetaFiles.npy')
     z=[]
     scans=range(0,num_scans)
     for thetaname in thetanames:
         for scan in scans:
-            theta=np.load('Theta_fMRI/'+thetaname+'.npy')
+            theta=np.load('Theta_est_fMRI/'+thetaname+'.npy')
             (x,y)=theta.shape
             #maintaining sparsity
             alpha=theta
@@ -35,12 +35,12 @@ def getThetaAlpha(phenotypes,num_scans):
             z.extend(generate_Z(thetaname,theta,alpha))
     z=np.reshape(z,(phenotypes,len(thetanames)*num_scans))
     print z
-    np.save('Z_fmri',z)
+    np.save('Z_est_fmri',z)
     z=[]
-    thetanames=np.load('Theta_dti/ThetaFiles.npy')
+    thetanames=np.load('Theta_est_dti/ThetaFiles.npy')
     for thetaname in thetanames:
         for scan in scans:
-            theta=np.load('Theta_dti/'+thetaname+'.npy')
+            theta=np.load('Theta_est_dti/'+thetaname+'.npy')
             (x,y)=theta.shape
             #maintaining sparsity
             alpha=theta
@@ -53,7 +53,7 @@ def getThetaAlpha(phenotypes,num_scans):
             z.extend(generate_Z(thetaname,theta,alpha))
     z=np.reshape(z,(phenotypes,len(thetanames)*num_scans))
     print z
-    np.save('Z_dti',z)
+    np.save('Z_est_dti',z)
     
 def main():
     phenotypes=int(sys.argv[1])

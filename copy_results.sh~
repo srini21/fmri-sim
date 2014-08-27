@@ -1,0 +1,6 @@
+mv W* ../W_results/
+cd ../W_results/
+mv Wd Wd100
+mv Wf Wf100
+mv Wf_comput Wf100_comput
+mv Wd_comput Wd100_comput

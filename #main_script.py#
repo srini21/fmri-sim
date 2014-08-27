@@ -7,6 +7,9 @@ import generate_b
 import generate_samples
 import generate_Z
 import concatenate_samples
+import generate_Z_est
+import generate_samples_est
+import pgd/pgd
 
 def usage():
     print "num_ppl num_samples noise_strength num_nodes topology sub_nodes behav_ft num_scans phenotypes"

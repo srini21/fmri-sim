@@ -78,8 +78,8 @@ def pgd(type,ys,ysc,x,lam,lam2,curr):
     return np.vstack((Ahat,Bhat))
     
 def poisson(Y,x):
-    lam=100.0
-    lam2=200.0
+    lam=1000.0
+    lam2=2000.0
     (n,p)=Y.shape
     curr=range(1,p)
     ys=Y[:,0]

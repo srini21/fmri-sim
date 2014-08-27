@@ -19,13 +19,16 @@ def generate_w(num_nodes, behav_ft):
         temp=G
         temp[temp.nonzero()]=np.absolute(np.random.randn(len(temp[temp.nonzero()])))
         Wf=np.dstack((Wf,temp))
+    Wf=np.sign(Wf)
     np.save(open('Wf','w'),Wf)
+
     Wd=G
     Wd[Wd.nonzero()]=np.absolute(np.random.randn(len(Wd[Wd.nonzero()])))#Generating only positive values to be stacked to W
     for i in range(0,behav_ft+1):
         temp=G
         temp[temp.nonzero()]=np.random.randn(len(temp[temp.nonzero()]))
         Wd=np.dstack((Wd,temp))
+    Wd=np.sign(Wd)
     np.save(open('Wd','w'),Wd)
     print "Shape of weights"
     print Wd.shape
