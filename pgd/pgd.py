@@ -79,7 +79,7 @@ def pgd(type,ys,ysc,x,lam,lam2,curr):
     
 def poisson(Y,x):
     lam=100.0
-    lam2=200.0
+    lam2=350.0
     (n,p)=Y.shape
     curr=range(1,p)
     ys=Y[:,0]
@@ -93,8 +93,8 @@ def poisson(Y,x):
     print W_comput.T.shape
     np.save('Wd_comput',W_comput.T)
 def gaussian(Y,x):
-    lam=0.0
-    lam2=1.0
+    lam=10.0
+    lam2=10.0
     (n,p)=Y.shape
     curr=range(1,p)
     ys=Y[:,0]

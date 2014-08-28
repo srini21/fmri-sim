@@ -78,23 +78,7 @@ def pgd(type,ys,ysc,x,lam,lam2,curr):
     return np.vstack((Ahat,Bhat))
     
 def poisson(Y,x):
-    lam=1000.0
-    lam2=2000.0
-    (n,p)=Y.shape
-    curr=range(1,p)
-    ys=Y[:,0]
-    ysc=np.hstack((Y[:,:0],Y[:,0+1:]))
-    W_comput= pgd('gaussian',ys,ysc,x,lam,lam2,0).T
-    for row in curr:
-        ys=Y[:,row]
-        ysc=np.hstack((Y[:,:row],Y[:,row+1:]))      
-        W_comput=np.dstack((pgd('gaussian',ys,ysc,x,lam,lam2,row).T,W_comput))
-        print str(row)+' done'
-    print W_comput.T.shape
-    np.save('Wd_comput',W_comput.T)
-def gaussian(Y,x):
-    lam=0.0
-    lam2=1.0
+    lam=100.0.0
     (n,p)=Y.shape
     curr=range(1,p)
     ys=Y[:,0]

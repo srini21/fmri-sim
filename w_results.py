@@ -3,7 +3,7 @@ import networkx as nx
 import scipy.stats as stats
 import matplotlib.pyplot as plt
 from sklearn.metrics import r2_score
-
+from sklearn.metrics import auc
 wf=np.load('Wf')
 wd=np.load('Wd')
 wfc=np.load('Wf_comput.npy')
@@ -24,11 +24,20 @@ print "r2 score         : "
 print r2_score(np.reshape(wd,np.size(wd)),np.reshape(wdc,np.size(wdc)))
 print "----------------"
 
+wd_vec=np.reshape(wd,np.size(wd))
+wdc_vec=np.reshape(wdc,np.size(wdc))
+wf_vec=np.reshape(wf,np.size(wf))
+wfc_vec=np.reshape(wfc,np.size(wfc))
+
+#auc(wf_vec,wfc_vec)
+#auc(wd_vec,wdc_vec)
+
 tofGraph=wfc[:,:,1]
 tofGraph[tofGraph<0]=0
 todGraph=wdc[:,:,1]
 todGraph[todGraph<0]=0
 adjmat=np.load('adj_mat')
+
 G=nx.from_numpy_matrix(adjmat)
 G2=nx.from_numpy_matrix(tofGraph)
 G3=nx.from_numpy_matrix(todGraph)
