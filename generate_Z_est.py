@@ -4,15 +4,16 @@ def sigmoid(num):
     y=1/(1+np.exp(-num))
     return y
 
-def generate_Z(thetaname,theta,alpha):
+def generate_Z(phenotypes,thetaname,theta,alpha):
     if not os.path.exists('Z_est_fMRI'):
         os.makedirs('Z_est_fMRI')
     theta=np.resize(theta,theta.size)
     z=np.dot(alpha.T,theta)
-    for i in range(0,z.size):
-        z[i]=sigmoid(z[i])
-    for i in range(0,z.size):
-        z[i]=(z[i]-np.mean(z))/np.std(z)
+    if phenotypes!=1:
+        for i in range(0,z.size):
+            z[i]=sigmoid(z[i])
+        for i in range(0,z.size):
+            z[i]=(z[i]-np.mean(z))/np.std(z)
     return z
     
 def getThetaAlpha(phenotypes,num_scans):
@@ -32,7 +33,7 @@ def getThetaAlpha(phenotypes,num_scans):
                 temp[temp.nonzero()]=np.random.rand(len(temp[temp.nonzero()]))
                 alpha=np.dstack((alpha,temp))
             alpha=np.resize(alpha,(theta.size,phenotypes))
-            z.extend(generate_Z(thetaname,theta,alpha))
+            z.extend(generate_Z(phenotypes,thetaname,theta,alpha))
     z=np.reshape(z,(phenotypes,len(thetanames)*num_scans))
     print z
     np.save('Z_est_fmri',z)
@@ -50,7 +51,7 @@ def getThetaAlpha(phenotypes,num_scans):
                 temp[temp.nonzero()]=np.random.rand(len(temp[temp.nonzero()]))
                 alpha=np.dstack((alpha,temp))
             alpha=np.resize(alpha,(theta.size,phenotypes))
-            z.extend(generate_Z(thetaname,theta,alpha))
+            z.extend(generate_Z(phenotypes,thetaname,theta,alpha))
     z=np.reshape(z,(phenotypes,len(thetanames)*num_scans))
     print z
     np.save('Z_est_dti',z)
